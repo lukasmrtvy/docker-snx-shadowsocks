@@ -32,7 +32,7 @@ COPY entrypoint.sh /
 
 RUN chmod +x entrypoint.sh
 
-RUN apt install -y shadowsocks-libev net-tools supervisor
+RUN apt install -y shadowsocks-libev net-tools supervisor iptables
 
 
 
