@@ -10,5 +10,8 @@ if [ -z ${SNX_SERVER+x} ] && [ -z ${SNX_CERTPATH+x} ] && [ -z ${SNX_CERTPASS+x}]
   echo "Not enough variables, make sure that SNX_SERVER, SNX_CERTPATH and SNX_CERTPASS is set"
   exit 1
 else
+  if [ -n "${CUSTOM_IPTABLE_RULE+x}" ]; then
+       $(iptables "${CUSTOM_IPTABLE_RULE+x}")
+  fi
   exec $@
 fi
