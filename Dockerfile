@@ -34,14 +34,7 @@ RUN chmod +x entrypoint.sh
 
 RUN apt install -y shadowsocks-libev net-tools supervisor
 
-# Supervisor Web interface 9001
 
-
-ENV SS_SERVER=${CUSTOM_SS_SERVER:-"127.0.0.1"}
-ENV SS_PORT=${CUSTOM_SS_PORT:-"8388"}
-ENV SS_METHOD=${CUSTOM_SS_METHOD:-"chacha20-ietf-poly1305"}
-ENV SS_PASS=${CUSTOM_SS_PASS:-"initialpass"}
-ENV SS_OPTS=${CUSTOM_SS_OPTS:-"--fast-open -u"}
 
 
 COPY supervisord.conf /supervisord.conf
@@ -50,7 +43,6 @@ COPY snx.sh /snx.sh
 RUN chmod +x /snx.sh
 
 EXPOSE 9001
-
 EXPOSE  8388/tcp 8388/udp
 
 USER johndoe
