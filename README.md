@@ -3,7 +3,7 @@
 # Info
 
 ```
-docker run -d 
+docker run -d -t
   --name snx-shadowsocks 
   --restart always 
   -e SNX_CERTPASS=mypass 
@@ -16,6 +16,7 @@ docker run -d
   -e CUSTOM_SS_SERVER=0.0.0.0 
   lukasmrtvy/docker-snx-shadowsocks:latest
   ```
+Note: -t is mandatory 
 
 # Client
 `ss-local -s 127.0.0.1 -p 8888 -l 1080 -k initialpass -m  chacha20-ietf-poly1305`
