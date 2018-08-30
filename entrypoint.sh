@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export SS_SERVER="${CUSTOM_SS_SERVER:-"127.0.0.1"}"
+export SS_SERVER="${CUSTOM_SS_SERVER:-"0.0.0.0"}"
 export SS_PORT="${CUSTOM_SS_PORT:-"8388"}"
 export SS_METHOD="${CUSTOM_SS_METHOD:-"chacha20-ietf-poly1305"}"
 export SS_PASS="${CUSTOM_SS_PASS:-"initialpass"}"
