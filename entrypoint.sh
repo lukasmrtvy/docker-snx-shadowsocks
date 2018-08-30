@@ -10,8 +10,8 @@ if [ -z "${SNX_SERVER+x}" ] && [ -z "${SNX_CERTPATH+x}" ] && [ -z "${SNX_CERTPAS
   echo "Not enough variables, make sure that SNX_SERVER, SNX_CERTPATH and SNX_CERTPASS is set"
   exit 1
 else
-  if [ -n "${CUSTOM_DNAT_IPTABLE_RULE_DEST+x}" ] && [ -n "${CUSTOM_DNAT_IPTABLE_RULE_PORT+x}" ]; then
-    iptables -t nat -A OUTPUT -p tcp -d "${CUSTOM_DNAT_IPTABLE_RULE_DEST}" --dport "${CUSTOM_DNAT_IPTABLE_RULE_PORT}" -j DNAT --to-destination "${SNX_SERVER}"
-  fi
+ # if [ -n "${CUSTOM_DNAT_IPTABLE_RULE_DEST+x}" ] && [ -n "${CUSTOM_DNAT_IPTABLE_RULE_PORT+x}" ]; then
+ #   iptables -t nat -A OUTPUT -p tcp -d "${CUSTOM_DNAT_IPTABLE_RULE_DEST}" --dport "${CUSTOM_DNAT_IPTABLE_RULE_PORT}" -j DNAT --to-destination "${SNX_SERVER}"
+ # fi
   exec $@
 fi
