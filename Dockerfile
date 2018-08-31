@@ -45,7 +45,7 @@ RUN chmod +x /snx.sh
 EXPOSE 9001
 EXPOSE  8388/tcp 8388/udp
 
-USER johndoe
+#USER johndoe
 
 ENTRYPOINT ["/entrypoint.sh"]
 
