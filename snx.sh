@@ -1,11 +1,8 @@
-#!/bin/bash
-
-/usr/bin/expect <<EOF
-exec snx -s ${SNX_SERVER} -c ${SNX_CERTPATH}
+#!/usr/bin/expect -f
+spawn snx -s $env(SNX_SERVER) -c $env(SNX_CERTPATH)
 expect "*?assword:"
-send "${SNX_CERTPASS}\r"
+send "$env(SNX_CERTPASS)\r"
 expect "*Do you accept*"
 send "y\r"
 expect "SNX - connected."
-interact
-EOF
+expect eof
