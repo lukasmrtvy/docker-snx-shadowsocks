@@ -1,6 +1,6 @@
 # docker-snx-shadowsocks
 
-# Info
+# Infoo
 
 ```
 docker run -d -t
