@@ -6,6 +6,9 @@ export SS_METHOD="${CUSTOM_SS_METHOD:-"chacha20-ietf-poly1305"}"
 export SS_PASS="${CUSTOM_SS_PASS:-"initialpass"}"
 export SS_OPTS="${CUSTOM_SS_OPTS:-"--fast-open -u"}"
 
+export SD_USER="${SD_USER:-admin}"
+export SD_PASS="${SD_PASS:-admin}"
+
 touch /${USER}/.snxrc
 
 if [ -z "${SNX_SERVER+x}" ] && [ -z "${SNX_CERTPATH+x}" ] && [ -z "${SNX_CERTPASS+x}"  ];then
