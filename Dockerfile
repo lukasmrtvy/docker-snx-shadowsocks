@@ -22,10 +22,11 @@ RUN groupadd -r -g ${GID} ${GROUP} && adduser --disabled-password --uid ${UID} -
     chmod +x /tmp/snx_install.sh &&  \
     /tmp/snx_install.sh 
 
-COPY supervisord.conf /supervisord.conf
-COPY snx.sh /snx.sh
+COPY /conf/supervisord.conf /
+COPY /scripts/snx.sh /
+COPY /scripts/entrypoint.sh /
 
-RUN chmod +x /snx.sh
+RUN chmod +x /snx.sh /entrypoint.sh
 
 EXPOSE 9001
 EXPOSE  8388/tcp 8388/udp
