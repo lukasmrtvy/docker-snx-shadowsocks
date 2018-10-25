@@ -6,6 +6,8 @@ export SS_METHOD="${CUSTOM_SS_METHOD:-"chacha20-ietf-poly1305"}"
 export SS_PASS="${CUSTOM_SS_PASS:-"initialpass"}"
 export SS_OPTS="${CUSTOM_SS_OPTS:-"--fast-open -u"}"
 
+touch /${USER}/.snxrc
+
 if [ -z "${SNX_SERVER+x}" ] && [ -z "${SNX_CERTPATH+x}" ] && [ -z "${SNX_CERTPASS+x}"  ];then
   echo "Not enough variables, make sure that SNX_SERVER, SNX_CERTPATH and SNX_CERTPASS is set"
   exit 1
