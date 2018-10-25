@@ -3,7 +3,7 @@
 export SS_SERVER="${CUSTOM_SS_SERVER:-"0.0.0.0"}"
 export SS_PORT="${CUSTOM_SS_PORT:-"8388"}"
 export SS_METHOD="${CUSTOM_SS_METHOD:-"chacha20-ietf-poly1305"}"
-export SS_PASS="${CUSTOM_SS_PASS:-"initialpass"}"
+export SS_PASS="${CUSTOM_SS_PASS:-"$(openssl rand -base64 12)"}"
 export SS_OPTS="${CUSTOM_SS_OPTS:-"--fast-open -u"}"
 
 export SD_USER="${SD_USER:-admin}"
@@ -19,6 +19,8 @@ else
  # if [ -n "${CUSTOM_DNAT_IPTABLE_RULE_DEST+x}" ] && [ -n "${CUSTOM_DNAT_IPTABLE_RULE_PORT+x}" ]; then
     iptables -t nat -A OUTPUT -p tcp -d "${CUSTOM_DNAT_IPTABLE_RULE_DEST}" --dport "${CUSTOM_DNAT_IPTABLE_RULE_PORT}" -j DNAT --to-destination "${SNX_SERVER}"
  # fi
- 
+  if [ -z "${CUSTOM_SS_PASS}" ]; then
+     echo "Generated password: ${SS_PASS}"
+  fi
   exec $@
 fi
