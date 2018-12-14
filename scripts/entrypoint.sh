@@ -9,16 +9,18 @@ export SS_OPTS="${CUSTOM_SS_OPTS:-"--fast-open -u"}"
 export SD_USER="${SD_USER:-admin}"
 export SD_PASS="${SD_PASS:-admin}"
 
-touch ~/${USER}/.snxrc
-
 if [ -z "${SNX_SERVER+x}" ] && [ -z "${SNX_CERTPATH+x}" ] && [ -z "${SNX_CERTPASS+x}"  ];then
   echo "Not enough variables, make sure that SNX_SERVER, SNX_CERTPATH and SNX_CERTPASS is set"
   exit 1
 else
 
- # if [ -n "${CUSTOM_DNAT_IPTABLE_RULE_DEST+x}" ] && [ -n "${CUSTOM_DNAT_IPTABLE_RULE_PORT+x}" ]; then
-    iptables -t nat -A OUTPUT -p tcp -d "${CUSTOM_DNAT_IPTABLE_RULE_DEST}" --dport "${CUSTOM_DNAT_IPTABLE_RULE_PORT}" -j DNAT --to-destination "${SNX_SERVER}"
- # fi
+  # for example: # OPTIONS="iptables -t nat -A OUTPUT -p tcp -d Y.Y.Y.Y --dport 443 -j DNAT --to-destination X.X.X.X"
+  export OPTIONS=("${OPTIONS}")
+
+  if [[ "${OPTIONS}" ]];then
+    $(eval echo "$OPTIONS")
+  fi
+  
   if [ -z "${CUSTOM_SS_PASS}" ]; then
      echo "Generated password: ${SS_PASS}"
   fi
