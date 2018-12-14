@@ -1,17 +1,20 @@
 # docker-snx-shadowsocks
 
-# Infoo
+# Info
 
 ```
 docker run -d -t
   --name snx-shadowsocks 
   --restart always 
+  -p 8888:8888/tcp \
+  -p 8888:8888/udp \
   -e SNX_CERTPASS=mypass 
   -e SNX_CERTPATH=/VPN/mycert.p12 
   -e SNX_SERVER=myserver 
   --cap-add=NET_ADMIN 
   -v /lib/modules:/lib/modules:ro 
   -v /foo/bar/VPN:/VPN:ro 
+  -e OPTIONS="iptables -t nat -A OUTPUT -p tcp -d Y.Y.Y.Y --dport 443 -j DNAT --to-destination X.X.X.X" \
   -e CUSTOM_SS_PORT=8888 
   -e CUSTOM_SS_SERVER=0.0.0.0 
   lukasmrtvy/docker-snx-shadowsocks:latest
