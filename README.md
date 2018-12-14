@@ -3,7 +3,7 @@
 # Info
 
 ```
-docker run -d -t
+docker run -d 
   --name snx-shadowsocks 
   --restart always 
   -p 8888:8888/tcp \
