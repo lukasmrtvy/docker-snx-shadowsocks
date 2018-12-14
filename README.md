@@ -36,6 +36,6 @@ SNX_SERVER=
 CUSTOM_SS_SERVER: "127.0.0.1"
 CUSTOM_SS_PORT: "8388"
 CUSTOM_SS_METHOD: "chacha20-ietf-poly1305"
-CUSTOM_SS_PASS: "initialpass"
+CUSTOM_SS_PASS: "<random>"
 CUSTOM_SS_OPTS: "--fast-open -u"
 ```
