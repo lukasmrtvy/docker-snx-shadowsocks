@@ -1,9 +1,16 @@
-FROM ubuntu:18.04
+FROM ubuntu:bionic
+
+ENV SNX_URL https://vpnportal.aktifbank.com.tr/SNX/INSTALL/snx_install.sh
 
 ENV UID 1337
 ENV GID 1337
+
 ENV USER johndoe
 ENV GROUP johndoe
+
+COPY /conf/supervisord.conf /
+COPY /scripts/snx.sh /
+COPY /scripts/entrypoint.sh /
 
 RUN groupadd -r -g ${GID} ${GROUP} && adduser --disabled-password --uid ${UID} --ingroup ${GROUP} --gecos '' ${USER} && \
     dpkg --add-architecture i386 &&  \
@@ -18,15 +25,10 @@ RUN groupadd -r -g ${GID} ${GROUP} && adduser --disabled-password --uid ${UID} -
 	shadowsocks-libev \
 	iptables \
 	supervisor &&  \
-    wget https://vpnportal.aktifbank.com.tr/SNX/INSTALL/snx_install.sh -O /tmp/snx_install.sh &&  \
+    wget "${SNX_URL}" -O /tmp/snx_install.sh &&  \
     chmod +x /tmp/snx_install.sh &&  \
-    /tmp/snx_install.sh 
-
-COPY /conf/supervisord.conf /
-COPY /scripts/snx.sh /
-COPY /scripts/entrypoint.sh /
-
-RUN chmod +x /snx.sh /entrypoint.sh
+    /tmp/snx_install.sh && \
+    chmod +x /snx.sh /entrypoint.sh
 
 EXPOSE 9001
 EXPOSE  8388/tcp 8388/udp
