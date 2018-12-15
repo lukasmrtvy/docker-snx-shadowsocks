@@ -1,5 +1,7 @@
 FROM ubuntu:bionic
 
+ARG SNX_URL
+
 ENV SNX_URL https://vpnportal.aktifbank.com.tr/SNX/INSTALL/snx_install.sh
 
 ENV UID 1337
